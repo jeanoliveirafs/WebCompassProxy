@@ -1,0 +1,79 @@
+Crie um Sistema WebCompass - Proxy Web Avançado
+Desenvolva um sistema completo de proxy web com bypass de CORS, interface moderna e automação web. O sistema deve rodar na porta 5000 e ser acessível pelo IP externo da VPS.
+Especificações Técnicas:
+Backend:
+
+Node.js + Express + TypeScript
+Puppeteer para automação e bypass de CORS
+Sistema de cache em memória
+Rate limiting e segurança
+API RESTful completa
+
+Frontend:
+
+React 18 + TypeScript + Vite
+Interface moderna e responsiva
+Tailwind CSS para estilização
+Componentes reutilizáveis
+
+Funcionalidades Obrigatórias:
+
+Navegar em qualquer website (bypass CORS)
+Capturar screenshots de páginas
+Injetar scripts personalizados
+Extrair conteúdo HTML/texto
+Interface de browser proxy
+Sistema de histórico de navegação
+Editor de scripts para automação
+
+Estrutura de Rotas API:
+
+POST /api/proxy/navigate - Navegar para URL
+POST /api/proxy/screenshot - Capturar screenshot
+POST /api/proxy/content - Extrair conteúdo
+POST /api/proxy/inject - Injetar script
+GET /api/proxy/history - Histórico de navegação
+
+Interface deve ter:
+
+Campo de URL com validação
+Área de visualização do conteúdo/screenshot
+Painel de controles (voltar, avançar, refresh)
+Editor de scripts com syntax highlighting
+Histórico de navegação
+Configurações de proxy
+
+Configuração para VPS:
+
+Servidor escutando em 0.0.0.0:5000
+CORS configurado para aceitar qualquer origem
+PM2 configurado para produção
+Build otimizado
+Logs estruturados
+
+Dependências necessárias:
+
+express, cors, helmet, compression
+puppeteer
+react, react-dom
+vite, typescript
+tailwindcss
+lucide-react (ícones)
+@types/* para TypeScript
+
+Configurações obrigatórias:
+
+tsconfig.json otimizado
+vite.config.ts com proxy
+ecosystem.config.js para PM2
+package.json com scripts completos
+.env.example com variáveis
+
+Scripts package.json necessários:
+
+dev (servidor + cliente concorrente)
+build (build completo)
+start (produção)
+build:server e build:client separados
+
+Crie tudo funcional, testado e pronto para deploy em VPS Ubuntu com PM2. O sistema deve ser profissional, robusto e totalmente operacional.
