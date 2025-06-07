@@ -250,7 +250,7 @@
   }
 
   .history-item.active {
-    @apply bg-primary/10 border-primary;
+    @apply bg-primary bg-opacity-10 border-primary;
   }
 
   /* Script templates */

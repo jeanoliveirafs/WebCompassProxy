@@ -126,6 +126,7 @@ return highlightElements();`
       const scriptWithId: Script = {
         ...script,
         id,
+        description: script.description || null,
         createdAt: new Date()
       };
       this.scriptsData.set(id, scriptWithId);

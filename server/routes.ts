@@ -16,7 +16,7 @@ let browser: any = null;
 async function getBrowser() {
   if (!browser) {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
@@ -158,13 +158,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       let content;
       if (selector) {
-        content = await page.evaluate((sel) => {
+        content = await page.evaluate((sel: string) => {
           const elements = document.querySelectorAll(sel);
           return Array.from(elements).map(el => ({
             tagName: el.tagName,
             textContent: el.textContent?.trim(),
             innerHTML: el.innerHTML,
-            attributes: Array.from(el.attributes).reduce((acc, attr) => {
+            attributes: Array.from(el.attributes).reduce((acc: Record<string, string>, attr: Attr) => {
               acc[attr.name] = attr.value;
               return acc;
             }, {} as Record<string, string>)
@@ -203,12 +203,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
       
       // Inject and execute the script
-      const result = await page.evaluate((scriptCode) => {
+      const result = await page.evaluate((scriptCode: string) => {
         try {
           // Create a function wrapper to execute the script
           const scriptFunction = new Function(scriptCode);
           return scriptFunction();
-        } catch (error) {
+        } catch (error: any) {
           return { error: error.message };
         }
       }, script);
