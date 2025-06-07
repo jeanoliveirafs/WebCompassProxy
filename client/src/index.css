@@ -259,7 +259,7 @@
   }
 
   .script-template:hover {
-    @apply bg-secondary/80;
+    @apply bg-secondary bg-opacity-80;
   }
 }
 

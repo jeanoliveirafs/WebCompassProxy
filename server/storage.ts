@@ -124,9 +124,10 @@ return highlightElements();`
     defaultScripts.forEach(script => {
       const id = this.currentScriptId++;
       const scriptWithId: Script = {
-        ...script,
         id,
+        name: script.name,
         description: script.description || null,
+        content: script.content,
         createdAt: new Date()
       };
       this.scriptsData.set(id, scriptWithId);
@@ -142,8 +143,13 @@ return highlightElements();`
   async addNavigationHistory(entry: InsertNavigationHistory): Promise<NavigationHistory> {
     const id = this.currentHistoryId++;
     const historyEntry: NavigationHistory = {
-      ...entry,
       id,
+      url: entry.url,
+      title: entry.title || null,
+      responseTime: entry.responseTime || null,
+      statusCode: entry.statusCode || null,
+      contentSize: entry.contentSize || null,
+      screenshotPath: entry.screenshotPath || null,
       timestamp: new Date()
     };
     this.navigationHistoryData.set(id, historyEntry);
@@ -171,8 +177,10 @@ return highlightElements();`
   async createScript(script: InsertScript): Promise<Script> {
     const id = this.currentScriptId++;
     const scriptWithId: Script = {
-      ...script,
       id,
+      name: script.name,
+      description: script.description || null,
+      content: script.content,
       createdAt: new Date()
     };
     this.scriptsData.set(id, scriptWithId);
