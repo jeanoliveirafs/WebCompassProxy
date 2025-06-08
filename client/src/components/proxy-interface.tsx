@@ -18,12 +18,14 @@ import {
   Moon
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import { usePWA } from "@/hooks/use-pwa";
 
 export function ProxyInterface() {
   const [currentUrl, setCurrentUrl] = useState("https://example.com");
   const [inputUrl, setInputUrl] = useState("https://example.com");
   const { toast } = useToast();
   const { theme, setTheme } = useTheme();
+  const { isInstallable, installApp } = usePWA();
   
   const {
     navigate,
@@ -126,6 +128,16 @@ export function ProxyInterface() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
+            {isInstallable && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={installApp}
+                className="text-xs"
+              >
+                Install App
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="sm"
