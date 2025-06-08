@@ -2,8 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'webcompass-proxy',
-      script: 'server/index.ts',
-      interpreter: 'tsx',
+      script: 'dist/index.js', // <--- CORREÇÃO: Aponta para o arquivo JS compilado
+      // interpreter: 'tsx', // <--- CORREÇÃO: Removido/Comentado para produção, pois não é necessário para o código compilado
       instances: 1,
       exec_mode: 'fork',
       watch: false,
@@ -38,12 +38,12 @@ module.exports = {
   deploy: {
     production: {
       user: 'root',
-      host: 'YOUR_VPS_IP',
+      host: 'YOUR_VPS_IP', // <--- Lembre-se de substituir pelo IP externo da sua VPS
       ref: 'origin/main',
-      repo: 'https://github.com/your-repo/webcompass.git',
+      repo: 'https://github.com/jeanoliveirafs/WebCompassProxy.git',
       path: '/var/www/webcompass',
       'pre-deploy-local': '',
-      'post-deploy': 'npm install && npm run build && pm2 reload ecosystem.config.js --env production',
+      'post-deploy': 'npm install && npm run build && pm2 reload ecosystem.config.cjs --env production',
       'pre-setup': ''
     }
   }
